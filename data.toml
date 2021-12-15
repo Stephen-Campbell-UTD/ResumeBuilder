@@ -1,0 +1,85 @@
+# This is a TOML document
+[Contact]
+name = "Stephen Campbell"
+phone = "(806) 420-5945"
+email = "kingiskey@gmail.com"
+
+[Education.Bachelors]
+type = "Bachelor of Science in Electrical Engineering"
+completed = "May 2022"
+gpa = "GPA: 3.99/4.0"
+school = "University of Texas at Dallas, Richardson, Texas"
+honors = "Academic Excellence Scholar, Dean's List 3 semesters"
+
+
+[ProfessionalExperience.OutdoorTripLeader]
+start = "2020-05-10"
+end = "2019-09-10"
+title = "Outdoor Trip Leader"
+location = "Richardson, TX"
+employer = "University Recreation"
+takeaways = [
+  "Led 12+ students on off-campus excursions to foster an appreciation of the outdoors",
+  "Adapted to changing needs by taking on new responsibilities ensuring positive participant experience",
+  "Educated participants in outdoor ethics to encourage habits of environmental sustainability"
+] 
+
+[ProfessionalExperience.Host]
+start = "2017-08-20"
+end = "2018-06-01"
+title = "Host"
+location = "Amarillo, TX"
+employer = "Teddy Jack's Armadillo Grill"
+takeaways = [
+  "Professionally communicated with co-workers to decrease customer wait times",
+  "Consistently assisted in team-based goals to motivate a collaborative team mentality",
+  "Solved complex problems in high stress situations that resulted in greater efficiency for the restaurant "
+] 
+
+[Project.RobotArmDesignProject]
+start = "2019-01-21"
+end = "2019-05-07"
+title = "Robot Arm Design Project"
+takeaways = [
+  "Modeled and tested several iterations of an end effector in SolidWorks gaining insight into the engineering design process",
+  "Simulated forward kinematics of robot arm resulting in simplified set of project constraints ",
+  "Programmed Arduino microcontroller to perform nuanced movements from sensor signal"
+]
+
+[[Project.RobotArmDesignProject.TechologiesUsed]]
+title = "Arduino"
+link = "https://www.arduino.cc/"
+
+[[Project.RobotArmDesignProject.TechologiesUsed]]
+title = "MATLAB"
+link = "https://www.mathworks.com/products/matlab.html"
+
+[[Project.RobotArmDesignProject.TechologiesUsed]]
+title = "SolidWorks"
+link = "https://www.solidworks.com/"
+
+[Project.MathematicsEditorFrontendPrototype]
+start = "2020-05-21"
+end = "Present"
+title = "Robot Arm Design Project"
+takeaways = [
+  "Implemented and adapted several algorithms from Knuth's The TeXbook with OpenType fonts",
+  "Designed and built main application logic consisting of over 10k SLOC",
+  "Utilized and gained a working knowledge of various Linux Command-Line utilities i.e. git, vi, etc."
+]
+
+[[Project.MathematicsEditorFrontendPrototype.TechologiesUsed]]
+title = "Javascript"
+link = "https://en.wikipedia.org/wiki/ECMAScript"
+
+[[Project.MathematicsEditorFrontendPrototype.TechologiesUsed]]
+title = "Parcel"
+link = "https://parceljs.org/"
+
+
+[[Skills]]
+name="C++"
+[[Skills]]
+name="Javascript"
+[[Skills]]
+name="Python"
