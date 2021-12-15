@@ -1,0 +1,132 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+% Important note:
+% This template requires the resume.cls file to be in the same directory as the
+% .tex file. The resume.cls file provides the resume style used for structuring the
+% document.
+
+%
+% Creator Peilin Li
+% Contact me via twitter/wechat: @pe1l1nl1
+% linkedin.com/peill and/or github/ppeill
+% Inspired by Peppa Pig 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+\RequirePackage[OT1]{fontenc} 
+\documentclass{resume} % Use the custom resume.cls style
+
+% Packages
+\usepackage[left=0.40in,top=0.3in,right=0.75in,bottom=0.1in]{geometry} % Document margins
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome}
+\usepackage{hyperref}
+\usepackage{times}
+
+% Jinja
+\newcommand{\tab}[1]{\hspace{.2667\textwidth}\rlap{#1}}
+\newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
+
+
+\newcommand{\var}[1]{}
+\newcommand{\block}[1]{}
+
+
+
+\name{\var{Contact.name}} % Your name 
+
+\address{\centering\var{Contact.phone}  \hspace{1em}  \hspace{1em} \var{Contact.email}}
+%\address{123 Pleasant Lane \\ City, State 12345} % Your secondary addess (optional)
+% \address{\faGithub{ github.com/peppapig} \faLink{ peppapig.io} \faEnvelope{ peppapig@gmail.com}}
+% \address{\faMapMarker{ Lalaland, Cloudy, Great Britain} \faPhone(123)-456-789} % Your address
+
+\begin{document}
+% {\centerline {\em \textbf { Peppa pig wants a new job, job position from 20xx.01-20xx.01(delete it if needed) } } }
+%----------------------------------------------------------------------------------------
+
+%	JINJA MACROS
+\block{macro showEnd(endDate, endMonthYear)}
+\block{if endMonthYear}
+  \var{endMonthYear}
+\block{else}
+  \var{endDate}
+\block{endif}
+\block{endmacro}
+
+% Link Colors
+\hypersetup{
+  hidelinks=true,
+    % colorlinks=true,
+    % linkcolor=red,
+    % linkbordercolor=red,
+    % linkcolor=black,
+    % filecolor=black,      
+    % urlcolor=black,
+    % linkbordercolor=black,
+    pdftitle={Resume},
+    pdfpagemode=FullScreen,
+    }
+
+
+%	EDUCATION SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Education}
+
+  \block{for ed in Education.values()}
+  \textbf{\var{ed.type}} \hfill \var{ed.completedMonthYear} \newline
+  \var{ed.school} \hfill \textbf{\var{ed.gpa}} \newline
+  \emph{\var{ed.honors}}\newline
+  \block{endfor}
+  
+
+
+\end{rSection}
+
+\begin{rSection}{Professional Experience}
+
+  \block{for exp in ProfessionalExperience.values()}
+  \textbf{\var{exp.title}} \hfill \var{exp.startMonthYear} - \var{showEnd(exp.end ,exp.endMonthYear)} \newline
+  \var{exp.employer} \hfill \var{exp.location} 
+
+  \block{for takeaway in exp.takeaways}
+  \textbullet\hspace{1em} \var{takeaway} \newline
+  \block{endfor}
+
+
+  \block{endfor}
+
+\end{rSection}
+
+\begin{rSection}{Projects}
+  \block{for proj in Project.values()}
+  \textbf{\var{proj.title}} \hfill \var{proj.startMonthYear} -\var{showEnd(proj.end,proj.endMonthYear)}\newline
+    \textbf{Technologies Used:} 
+    % \var{proj.TechnologiesUsed|join(', ',attribute='title') }
+    \block{for technology in proj.TechnologiesUsed}
+    \href{\var{technology.link}}{
+    \var{technology.title}\var{'' if loop.last else ', '}
+    }
+    \block{endfor}
+
+
+    \block{for takeaway in proj.takeaways}
+    \textbullet\hspace{1em} \var{takeaway} \newline
+    \block{endfor}
+
+  \block{endfor}
+
+\end{rSection}
+
+\begin{rSection}{Skills}
+  
+\textbullet\hspace{1em} Proficient with
+\var{Skills|join(', ',attribute='name') }
+  
+\end{rSection}
+
+
+\end{document}

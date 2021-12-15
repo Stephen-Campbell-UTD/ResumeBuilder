@@ -1,0 +1,41 @@
+{
+  "latex-workshop.latex.recipe.default": "Latex Resume",
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "Latex Resume",
+      "tools": [
+        "transpile resume",
+        "latexmk resume"
+      ],
+    },
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk resume",
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        "-outdir=%OUTDIR%",
+        "%OUTDIR%/resume"
+      ],
+      "env": {}
+    },
+    {
+      "name": "transpile resume",
+      "command": "python",
+      "args": [
+        "%WORKSPACE_FOLDER%/resumeBuilder.py",
+        "--source",
+        "%WORKSPACE_FOLDER%/resume.toml",
+        "--input",
+        "%DOC_EXT%",
+        "--output",
+        "%OUTDIR%/resume.tex"
+      ],
+      "env": {}
+    }
+  ]
+}
