@@ -1,0 +1,70 @@
+# This is a TOML document
+[Contact]
+name = "Antharya Boindala"
+phone = "(779) 771-8717"
+email = "antharya.boindala\@gmail.com"
+
+[Education.Bachelors]
+type = "Bachelor of Science in Psychology"
+completed = "2022-05-10"
+# gpa = "GPA: 3.48/4.0"
+gpa = ""
+school = "University of Texas at Dallas, Richardson, Texas"
+honors = "Academic Excellence Scholar"
+
+
+[ProfessionalExperience.BehavioralHealthTechnician]
+start = "2021-09-10"
+end = "2021-01-10"
+title = "Behavioral Health Technician"
+location = "Colleyville, TX"
+employer = "Behavioral Innovations"
+takeaways = [
+  "Passed all monthly checklists with above a 95%",
+  "Promoted 3 times during my six months working",
+  "Assisted BCBA with creating personalized skill acquisition programs for the clients",
+  "Supported clients on their journey to become independent individuals",
+  "Completed session SOAP notes within 30 minutes of finishing the session",
+  "Provided clear and concise reporting to clients caretakers regarding their progress",
+  "Solely used positive reinforcement techniques to increase independence and social skills in clients"
+] 
+
+[ProfessionalExperience.Tutor]
+start = "2017-11-20"
+end = "2018-05-01"
+title = "Tutor"
+location = "Coppell, TX"
+employer = "Gideon Math and Reading"
+takeaways = [
+  "Worked with lots of children and improving their reading and math skills",
+  "Able to organize a system in which all the tutors could be more efficient and be able to spend more time with their kids",
+  "Spoke with parents about students achievements and learned communication skills"
+] 
+
+[ProfessionalExperience.BSWVolunteer]
+start = "2017-07-21"
+end = "2017-08-07"
+title = "Volunteer"
+location = "Plano, TX"
+employer = "Baylor Scott and White"
+takeaways = [
+  "Helped with small tasks like printing patient check in forms",
+  "Transported patients from room to room"
+] 
+
+
+
+[[Skills]]
+name="Communication"
+[[Skills]]
+name="Data Collection"
+[[Skills]]
+name="Autism Specturm Disorders"
+[[Skills]]
+name="Behavioral Health"
+[[Skills]]
+name="Applied Behavior Analysis"
+[[Skills]]
+name="Crisis Intervention"
+[[Skills]]
+name="Patient Safety"

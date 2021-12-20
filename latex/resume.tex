@@ -23,7 +23,8 @@
 \usepackage[left=0.40in,top=0.3in,right=0.75in,bottom=0.1in]{geometry} % Document margins
 \usepackage[T1]{fontenc}
 \usepackage{fontawesome}
-\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
 \usepackage{times}
 
 % Jinja
@@ -38,7 +39,7 @@
 
 \name{\var{Contact.name}} % Your name 
 
-\address{\centering\var{Contact.phone}  \hspace{1em}  \hspace{1em} \var{Contact.email}}
+\address{\centering\var{Contact.phone}  \hspace{1em}  \hspace{1em} \href{mailto:\var{Contact.email}}{\var{Contact.email}}}
 %\address{123 Pleasant Lane \\ City, State 12345} % Your secondary addess (optional)
 % \address{\faGithub{ github.com/peppapig} \faLink{ peppapig.io} \faEnvelope{ peppapig@gmail.com}}
 % \address{\faMapMarker{ Lalaland, Cloudy, Great Britain} \faPhone(123)-456-789} % Your address
@@ -48,27 +49,28 @@
 %----------------------------------------------------------------------------------------
 
 %	JINJA MACROS
-\block{macro showEnd(endDate, endMonthYear)}
-\block{if endMonthYear}
-  \var{endMonthYear}
-\block{else}
-  \var{endDate}
-\block{endif}
-\block{endmacro}
-
+% \block{macro showEnd(endDate, endMonthYear)}
+% \block{if endMonthYear}
+%   \var{endMonthYear}
+% \block{else}
+%   \var{endDate}
+% \block{endif}
+% \block{endmacro}
 % Link Colors
 \hypersetup{
-  hidelinks=true,
-    % colorlinks=true,
-    % linkcolor=red,
+  % hidelinks=true,
+    colorlinks=true,
+    linkcolor=red,
     % linkbordercolor=red,
-    % linkcolor=black,
-    % filecolor=black,      
-    % urlcolor=black,
-    % linkbordercolor=black,
+    filecolor=black,      
+    urlcolor=red,
+    % linkbordercolor=orange,
+    % urlbordercolor=.,
     pdftitle={Resume},
     pdfpagemode=FullScreen,
     }
+  
+\urlstyle{same}
 
 
 %	EDUCATION SECTION
@@ -89,7 +91,7 @@
 \begin{rSection}{Professional Experience}
 
   \block{for exp in ProfessionalExperience.values()}
-  \textbf{\var{exp.title}} \hfill \var{exp.startMonthYear} - \var{showEnd(exp.end ,exp.endMonthYear)} \newline
+  \textbf{\var{exp.title}} \hfill \var{exp.startMonthYear} - \var{exp.endMonthYear} \newline
   \var{exp.employer} \hfill \var{exp.location} 
 
   \block{for takeaway in exp.takeaways}
@@ -101,9 +103,10 @@
 
 \end{rSection}
 
+\block{if Project}
 \begin{rSection}{Projects}
   \block{for proj in Project.values()}
-  \textbf{\var{proj.title}} \hfill \var{proj.startMonthYear} -\var{showEnd(proj.end,proj.endMonthYear)}\newline
+  \textbf{\var{proj.title}} \hfill \var{proj.startMonthYear} -\ \var{proj.endMonthYear}\newline
     \textbf{Technologies Used:} 
     % \var{proj.TechnologiesUsed|join(', ',attribute='title') }
     \block{for technology in proj.TechnologiesUsed}
@@ -120,6 +123,7 @@
   \block{endfor}
 
 \end{rSection}
+\block{endif}
 
 \begin{rSection}{Skills}
   

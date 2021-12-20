@@ -1,0 +1,198 @@
+$desktopMin: 1050.5px;
+// $tabletMin: 833.5px;
+$tabletMin: 650px;
+$phoneMin: 320px;
+
+@mixin belowWidth($maxWidth) {
+  @media (max-width: $maxWidth) {
+    @content;
+  }
+}
+
+@mixin aboveWidth($minWidth) {
+  @media (min-width: $minWidth) {
+    @content;
+  }
+}
+
+@mixin betweenWidths($minWidth, $maxWidth) {
+  @media (max-width: $maxWidth) and (min-width: $minWidth) {
+    @content;
+  }
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+:root {
+  /* font-family: "No", "Segoe UI"; */
+  font-family: "Noto Sans";
+  font-size: 12px;
+  box-sizing: border-box;
+}
+body {
+  margin: 0px;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.MainContainer {
+  @include belowWidth($tabletMin) {
+    --margin-side: 4.16666vw;
+    // --margin-side: 4.16666vw;
+    --margin-side: 8.33333vw;
+  }
+  @include betweenWidths($tabletMin, $desktopMin) {
+    --margin-side: 8.33333vw;
+  }
+  @include aboveWidth($desktopMin) {
+    --margin-side: 16.6667vw;
+  }
+
+  width: calc(100vw - 2 * var(--margin-side));
+  max-width: 875px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 100px;
+}
+
+.RowContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  margin: 0;
+}
+
+.HeaderContainer {
+  display: grid;
+  width: 100%;
+  @include aboveWidth($tabletMin) {
+    grid-template-columns: auto minmax(auto, 1fr) auto;
+    grid-template-rows: auto;
+    margin-bottom: 40px;
+  }
+  @include belowWidth($tabletMin) {
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+  }
+
+  justify-items: center;
+  column-gap: 30px;
+  row-gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.MaxHalf {
+  max-width: 50%;
+}
+
+.NamePlate {
+  grid-area: 1 / 1;
+  @include aboveWidth($tabletMin) {
+    font-size: 3.998em;
+  }
+  @include belowWidth($tabletMin) {
+    // special to my name
+    font-size: 9vw;
+  }
+  font-weight: bold;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.ContactContainer {
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
+  width: max-content;
+  @include aboveWidth($tabletMin) {
+    grid-area: 1 / 2;
+    justify-self: right;
+  }
+  @include belowWidth($tabletMin) {
+    grid-area: 2 / 1;
+    transform-origin: center;
+    transform: scale(1.4);
+  }
+}
+
+.NavContainer {
+  $navWidth: 96px;
+  $navHeight: 48px;
+  transform-origin: center;
+  transform: translate(0px, 0px);
+  @include aboveWidth($tabletMin) {
+    // grid-area: 1 / 3;
+    --factor: 0.8;
+  }
+  @include belowWidth($tabletMin) {
+    --factor: 1.2;
+    position: absolute;
+    bottom: 8px;
+    right: 4px;
+  }
+  z-index: 10;
+  // top: calc(100vh - $navHeight - 8px);
+  // left: calc(100vw - $navWidth - 4px);
+  // }
+  width: calc(var(--factor) * $navWidth);
+  height: calc(var(--factor) * $navHeight);
+  cursor: pointer;
+}
+
+.SectionHeader {
+  font-size: 1.999em;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  @include belowWidth($tabletMin) {
+    text-align: center;
+  }
+}
+
+.Desc {
+  font-size: 1.414em;
+  // @include aboveWidth($tabletMin) {
+  //   font-size: 1.414em;
+  // }
+  // @include belowWidth($tabletMin) {
+  //   font-size: 1em;
+  // }
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.DescBold {
+  font-weight: bold;
+}
+
+.DescItalic {
+  font-style: italic;
+}
+
+.Bullets {
+  padding-inline-start: 20px;
+  padding-inline-end: 0em;
+}
+
+.Takeaways {
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+}
+.Takeaways li {
+  font-size: 1em;
+  // max-width: 50%;
+  /* line-height: 1.5; */
+  margin-bottom: 5px;
+}
+
+.Skills {
+  margin-block-start: 5px;
+  margin-block-end: 5px;
+}

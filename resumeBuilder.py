@@ -3,6 +3,7 @@ import os
 import toml
 import argparse
 from datetime import date
+import pandoc
 import copy
 
 
@@ -25,13 +26,15 @@ args = parser.parse_args()
 resumeTOMLPath = args.source if args.source else 'resume.toml'
 resume = toml.load(resumeTOMLPath)
 
-
 def addDateStrings(toml_dict: dict):
   toml_dict_copy = copy.copy(toml_dict)
   for key, value in toml_dict.items():
     if type(value) == dict:
       toml_dict[key] =  addDateStrings(value)
     elif type(value) == str:
+      if value == "Present":
+        toml_dict_copy[f"{key}MonthYear"] = "Present"
+        continue
       try:
         dt = date.fromisoformat(value)
         # print(dt)
@@ -45,6 +48,26 @@ def addDateStrings(toml_dict: dict):
   return toml_dict_copy
 
 resume = addDateStrings(resume)
+
+def sanitizeStrings(target):
+  if type(target) ==  list:
+    items = enumerate(target)
+  elif type(target) == dict:
+    items = target.items()
+
+  for key,value in items:
+    if type(value) ==  list or type(value) == dict:
+      sanitizeStrings(value)
+    elif type(value) == str:
+      doc = pandoc.read(value,format='commonmark')
+      target[key] = pandoc.write(doc, format='latex', options=["--wrap",'none']).strip()
+
+      print(target[key])
+  return target
+
+#only if latex
+resume = sanitizeStrings(resume)
+
 # from json import dumps
 # print(dumps(resume,indent=4))
 
